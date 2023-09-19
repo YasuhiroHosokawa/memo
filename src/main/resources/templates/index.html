@@ -2,9 +2,34 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>トップページ</title>
+  <title>メモ一覧ページ</title>
 </head>
 <body>
-<div>こんにちは</div>
+  <h1>メモ一覧</h1>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">内容</th>
+        <th scope="col">作成日時</th>
+        <th scope="col">更新日時</th>
+        <th scope="col">削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="data : ${memoList}">
+        <td>
+          <a th:href="@{'/edit/' + ${data.id}}">[[${data.content}]]</a>
+        </td>
+        <td>[[${data.createDateView}]]</td>
+        <td>[[${data.updateDateView}]]</td>
+        <td>
+          <form th:action="@{'/delete/' + ${data.id}}" method="post">
+            <input type="submit" value="削除">
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a th:href="@{'/edit'}"><input type="button" value="追加"></a>
 </body>
 </html>
