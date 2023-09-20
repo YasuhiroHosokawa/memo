@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'メモ' + ${processType.actionName} + 'ページ'"></title>
+</head>
+<body>
+  <h1 th:text="'メモ' + ${processType.actionName}"></h1>
+  <form th:action="@{/post}" th:object="${memo}" method="post">
+    <input type="hidden" name="id" th:value="${memo.id}">
+    <label for="content">
+      <textarea name="content" th:field="${memo.content}" id="content" cols="25" rows="10" maxlength="200" placeholder="メモを入力してください。（200文字）" autofocus></textarea>
+    </label>
+    <div>
+      <input type="submit" th:value="${processType.processName}">
+      <a th:href="@{/}"><input type="button" value="戻る"/></a>
+    </div>
+  </form>
+</body>
+</html>
